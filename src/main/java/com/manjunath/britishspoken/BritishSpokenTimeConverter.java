@@ -2,6 +2,53 @@ package com.manjunath.britishspoken;
 
 public class BritishSpokenTimeConverter {
 
+    private static final String[] HOURS = {
+            "twelve",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten",
+            "eleven"
+    };
+
+    private static final String[] ONES = {
+            "zero",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten",
+            "eleven",
+            "twelve",
+            "thirteen",
+            "fourteen",
+            "fifteen",
+            "sixteen",
+            "seventeen",
+            "eighteen",
+            "nineteen"
+    };
+
+    private static final String[] TENS = {
+            "",
+            "",
+            "twenty",
+            "thirty",
+            "forty",
+            "fifty"
+    };
+
     public String convert(int hour, int minute) {
         validateTime(hour, minute);
 
@@ -58,68 +105,21 @@ public class BritishSpokenTimeConverter {
     }
 
     private String hourToWords(int hour) {
-        String[] hours = {
-                "twelve",
-                "one",
-                "two",
-                "three",
-                "four",
-                "five",
-                "six",
-                "seven",
-                "eight",
-                "nine",
-                "ten",
-                "eleven"
-        };
-
-        return hours[hour % 12];
+        return HOURS[hour % 12];
     }
 
     private String numberToWords(int number) {
-        String[] ones = {
-                "zero",
-                "one",
-                "two",
-                "three",
-                "four",
-                "five",
-                "six",
-                "seven",
-                "eight",
-                "nine",
-                "ten",
-                "eleven",
-                "twelve",
-                "thirteen",
-                "fourteen",
-                "fifteen",
-                "sixteen",
-                "seventeen",
-                "eighteen",
-                "nineteen"
-        };
-
-        String[] tens = {
-                "",
-                "",
-                "twenty",
-                "thirty",
-                "forty",
-                "fifty"
-        };
-
         if (number < 20) {
-            return ones[number];
+            return ONES[number];
         }
 
         int tensPart = number / 10;
         int onesPart = number % 10;
 
         if (onesPart == 0) {
-            return tens[tensPart];
+            return TENS[tensPart];
         }
 
-        return tens[tensPart] + "-" + ones[onesPart];
+        return TENS[tensPart] + "-" + ONES[onesPart];
     }
 }
